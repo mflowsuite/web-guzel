@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guzel · Propuesta de la web nueva</title>
+<meta name="description" content="Una web nueva para Guzel: se ve como el local, aparece en Google y en las IA, y se actualiza sola desde el panel de Sofi.">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Guzel · Propuesta de la web nueva">
+<meta property="og:description" content="Se ve como el local, aparece en Google y en las IA, y se actualiza sola desde el panel de Sofi.">
+<meta property="og:image" content="img/local-d.webp">
+<link rel="icon" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Quicksand:wght@400;500;600;700&family=Fira+Sans:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1f1f1f; --ash: #474747; --cream: #f7f2e9; --paper: #fffdf9;
+    --teal: #8acdc1; --teal-deep: #1f6f63; --pink: #ffcefb; --butter: #fdeaa8; --sky: #99c6d2;
+    --line: #e6dfd2;
+    --display: 'Fraunces', Georgia, serif; --sans: 'Quicksand', system-ui, sans-serif;
+    color-scheme: light;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 500 17px/1.6 var(--sans); -webkit-font-smoothing: antialiased; }
+  img, video { display: block; max-width: 100%; }
+  a { color: var(--teal-deep); }
+  h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: 1.12; margin: 0; letter-spacing: -.01em; }
+  h2 { font-size: clamp(2rem, 4.2vw, 3rem); }
+  h3 { font-size: 1.35rem; }
+  p { margin: 0; }
+  .wrap { width: min(1120px, 100% - 32px); margin-inline: auto; }
+  .kicker { font-size: .78rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--teal-deep); }
+  .rule { width: 56px; height: 4px; border-radius: 4px; background: var(--teal); margin: 18px 0 22px; }
+  section { padding: clamp(64px, 10vw, 120px) 0; }
+  .lead { font-size: clamp(1.05rem, 1.6vw, 1.2rem); color: var(--ash); max-width: 62ch; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 24px; border-radius: 999px; background: var(--teal-deep); color: #fff; font-weight: 700; text-decoration: none; transition: transform .2s, box-shadow .2s; }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px -10px rgba(31,111,99,.6); }
+  .btn.ghost { background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.5); backdrop-filter: blur(6px); }
+
+  /* Hero */
+  .hero { position: relative; min-height: 100svh; display: grid; align-items: end; color: #fff; overflow: hidden; padding: 0; }
+  .hero video, .hero .poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(20,20,20,.62) 0%, rgba(20,20,20,.25) 55%, rgba(20,20,20,0) 100%), linear-gradient(180deg, rgba(20,20,20,.35) 0%, rgba(20,20,20,0) 30%, rgba(20,20,20,.55) 100%); }
+  .hero .top { position: absolute; top: 0; left: 0; right: 0; z-index: 2; padding: 22px 0; }
+  .hero .top .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+  .hero .logo { width: 120px; filter: brightness(0) invert(1); }
+  .hero .tag { font-size: .8rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; opacity: .9; }
+  .hero .content { position: relative; z-index: 2; padding-bottom: clamp(48px, 9vh, 96px); }
+  .hero h1 { font-size: clamp(2.6rem, 7vw, 5.4rem); max-width: 14ch; }
+  .hero h1 em { font-style: italic; color: var(--butter); }
+  .hero p { margin: 20px 0 30px; font-size: clamp(1.05rem, 1.8vw, 1.3rem); max-width: 48ch; opacity: .95; }
+  .hero .ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+
+  /* Mirala */
+  .look { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 72px); align-items: start; }
+  .points { list-style: none; padding: 0; margin: 28px 0 0; display: grid; gap: 18px; }
+  .points li { display: grid; grid-template-columns: 36px 1fr; gap: 14px; }
+  .points .n { width: 36px; height: 36px; border-radius: 50%; background: var(--cream); color: var(--teal-deep); display: grid; place-items: center; font-weight: 700; }
+  .points b { display: block; }
+  .points span { color: var(--ash); }
+  .mosaic { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .mosaic figure { margin: 0; border-radius: 18px; overflow: hidden; position: relative; aspect-ratio: 4/5; background: var(--cream); }
+  .mosaic figure:nth-child(2) { margin-top: 40px; }
+  .mosaic figure:nth-child(3) { margin-top: -40px; }
+  .mosaic img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s; }
+  .mosaic figure:hover img { transform: scale(1.05); }
+  .mosaic figcaption { position: absolute; left: 12px; bottom: 12px; padding: 4px 12px; border-radius: 999px; background: rgba(255,255,255,.9); font-size: .85rem; font-weight: 700; }
+  .demo-note { margin-top: 24px; font-size: .95rem; color: var(--ash); }
+
+  /* Compare */
+  .compare-bg { background: var(--cream); }
+  .compare { margin-top: 40px; display: grid; gap: 12px; }
+  .row { display: grid; grid-template-columns: 1.1fr 1.4fr 1.6fr; gap: 0; background: var(--paper); border-radius: 16px; overflow: hidden; border: 1px solid var(--line); }
+  .row > div { padding: 18px 22px; }
+  .row .topic { font-weight: 700; display: flex; align-items: center; gap: 10px; }
+  .row .topic i { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+  .row .old { color: #6b6b6b; border-left: 1px solid var(--line); }
+  .row .new { background: #eef7f5; border-left: 1px solid var(--line); }
+  .row.head { background: none; border: 0; }
+  .row.head > div { padding: 0 22px 4px; font-size: .78rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--ash); border: 0; background: none; }
+  .row.head .new { color: var(--teal-deep); }
+  .mobile-label { display: none; }
+
+  /* Panel */
+  .panel-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(32px, 6vw, 72px); align-items: center; }
+  .flow { background: var(--cream); border-radius: 24px; padding: clamp(20px, 3vw, 32px); }
+  .flow svg { width: 100%; height: auto; }
+  .aviso-demo { margin-top: 28px; border-radius: 18px; border: 1px solid var(--line); overflow: hidden; background: #fff; box-shadow: 0 20px 50px -30px rgba(0,0,0,.35); }
+  .aviso-demo .bar { display: flex; gap: 6px; padding: 10px 14px; background: #f1ede6; }
+  .aviso-demo .bar i { width: 9px; height: 9px; border-radius: 50%; background: #d8d0c3; }
+  .aviso-demo .body { padding: 20px; }
+  .aviso-demo .name { font-family: var(--display); font-size: 1.5rem; margin-bottom: 14px; }
+  .banner { display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; border-radius: 14px; background: var(--butter); border: 1px solid #f0d77d; }
+  .banner .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--ink); margin-top: 8px; flex: none; }
+  .banner small { display: block; color: var(--ash); font-size: .82rem; }
+  .pill { display: inline-block; margin-top: 12px; padding: 2px 12px; border-radius: 999px; background: #eee; font-size: .82rem; color: var(--ash); }
+
+  /* Screens */
+  .screens-bg { background: linear-gradient(180deg, var(--paper), #eaf4f6); }
+  .screens { margin-top: 48px; position: relative; padding-right: clamp(40px, 12vw, 160px); }
+  .browser { border-radius: 16px; overflow: hidden; background: #fff; box-shadow: 0 40px 80px -40px rgba(31,60,70,.45); border: 1px solid var(--line); }
+  .browser .bar { display: flex; align-items: center; gap: 6px; padding: 10px 14px; background: #f1ede6; }
+  .browser .bar i { width: 10px; height: 10px; border-radius: 50%; background: #d8d0c3; }
+  .browser .bar span { margin-left: 10px; font-size: .78rem; color: var(--ash); background: #fff; padding: 2px 12px; border-radius: 999px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+  .phone { position: absolute; right: 0; bottom: -40px; width: clamp(150px, 24vw, 260px); border-radius: 34px; padding: 10px; background: #1f1f1f; box-shadow: 0 40px 70px -30px rgba(0,0,0,.5); }
+  .phone img { border-radius: 26px; }
+
+  /* Safety */
+  .cards { margin-top: 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+  .card { padding: 24px; border-radius: 20px; background: var(--cream); }
+  .card .ico { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; margin-bottom: 14px; }
+  .card .ico svg { width: 22px; height: 22px; stroke: var(--ink); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .card b { display: block; margin-bottom: 4px; }
+  .card span { color: var(--ash); font-size: .95rem; }
+
+  /* Steps */
+  .steps-bg { background: var(--ink); color: #fff; }
+  .steps-bg .kicker { color: var(--teal); }
+  .steps-bg .lead { color: #cfcfcf; }
+  .steps { list-style: none; padding: 0; margin: 48px 0 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; counter-reset: s; }
+  .steps li { position: relative; padding: 26px 20px 22px; border-radius: 20px; background: #2a2a2a; counter-increment: s; }
+  .steps li::before { content: counter(s); font-family: var(--display); font-size: 2.6rem; line-height: 1; color: var(--teal); display: block; margin-bottom: 14px; }
+  .steps b { display: block; margin-bottom: 6px; }
+  .steps span { color: #c4c4c4; font-size: .95rem; }
+  details { margin-top: 28px; border-radius: 20px; background: #2a2a2a; padding: 6px 24px; }
+  summary { cursor: pointer; padding: 16px 0; font-weight: 700; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: '+'; font-size: 1.4rem; line-height: 1; color: var(--teal); transition: transform .25s; }
+  details[open] summary::after { transform: rotate(45deg); }
+  details ol { margin: 0 0 20px; padding-left: 20px; color: #d6d6d6; display: grid; gap: 8px; }
+  details p { color: #d6d6d6; margin-bottom: 18px; }
+  .final-cta { margin-top: 48px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+
+  /* Footer */
+  footer { background: #141414; color: rgba(255,255,255,.5); padding: 28px 0 24px; text-align: center; font-size: .85rem; }
+
+  /* MflowSuite badge */
+  #hl-pw-scene { position: relative; display: inline-block; margin-top: .75rem; }
+  #hl-pw-row { display: inline-flex; align-items: center; font-family: 'Fira Sans', sans-serif; font-size: 11px; font-weight: 600; white-space: nowrap; color: rgba(255,255,255,.55); }
+  .hl-pw-by { color: rgba(255,255,255,.3); }
+  #hl-pw-slot { display: inline-block; width: 28px; height: 28px; margin: 0 5px; vertical-align: middle; flex-shrink: 0; }
+  #hl-pw-logo { position: absolute; top: 0; left: 0; width: 28px; height: 28px; border-radius: 50%; object-fit: cover; pointer-events: none; }
+  #hl-pw-chars .pw-ch { display: inline-block; }
+  #hl-pw-logo.pw-glow { filter: drop-shadow(0 0 6px rgba(59,130,246,.9)); }
+  .hl-pw-wrap { text-align: center; padding: 12px 0 4px; }
+
+  /* Reveal */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .hero video { display: none; }
+    html { scroll-behavior: auto; }
+  }
+
+  @media (max-width: 900px) {
+    .look, .panel-grid { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 640px) {
+    body { font-size: 16px; }
+    .hero .tag { display: none; }
+    .row, .row.head { grid-template-columns: 1fr; }
+    .row.head { display: none; }
+    .row .old, .row .new { border-left: 0; border-top: 1px solid var(--line); }
+    .mobile-label { display: block; font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 2px; }
+    .row .new .mobile-label { color: var(--teal-deep); }
+    .steps { grid-template-columns: 1fr; }
+    .screens { padding-right: 0; padding-bottom: 120px; }
+    .phone { right: 8px; bottom: -20px; width: 140px; border-radius: 26px; padding: 7px; }
+    .phone img { border-radius: 20px; }
+    .mosaic figure:nth-child(2) { margin-top: 24px; }
+    .mosaic figure:nth-child(3) { margin-top: -24px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <img class="poster" src="img/local-d.webp" alt="" aria-hidden="true">
+  <video autoplay muted loop playsinline poster="img/local-d.webp" aria-hidden="true">
+    <source src="img/local-m.mp4" type="video/mp4" media="(max-width: 640px) and (orientation: portrait)">
+    <source src="img/local-d.mp4" type="video/mp4">
+  </video>
+  <div class="top">
+    <div class="wrap">
+      <img class="logo" src="img/logo.png" alt="Guzel">
+      <span class="tag">Propuesta · Web nueva</span>
+    </div>
+  </div>
+  <div class="content wrap">
+    <h1>Una web que se ve como <em>el local</em> y trabaja sola.</h1>
+    <p>Aparece en Google y en las recomendaciones de las IA, y se actualiza sola desde el panel que Guzel ya usa con Sofi.</p>
+    <div class="ctas">
+      <a class="btn" href="https://guzel.31-220-56-152.sslip.io" target="_blank" rel="noopener">Ver la web de prueba →</a>
+      <a class="btn ghost" href="#cambia">Qué cambia</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section id="mirala">
+  <div class="wrap look">
+    <div class="reveal">
+      <p class="kicker">Mirala ahora</p>
+      <div class="rule"></div>
+      <h2>Se entra a Guzel por la gota del logo.</h2>
+      <ul class="points">
+        <li><span class="n">1</span><p><b>La entrada</b><span>El video del local ocupa toda la pantalla, como entrar por la puerta.</span></p></li>
+        <li><span class="n">2</span><p><b>El recorrido</b><span>Al bajar, el video pasa por cejas, pestañas y productos, y se detiene en cada tema.</span></p></li>
+        <li><span class="n">3</span><p><b>Precios en el lugar</b><span>"Ver precios" abre una ventanita encima del video, sin saltar a otra página.</span></p></li>
+        <li><span class="n">4</span><p><b>Sucursales</b><span>Cada una con su página: dirección, mapa, horario y si está abierta ahora.</span></p></li>
+        <li><span class="n">5</span><p><b>Sofi</b><span>El botón "Hablar con Sofi" está arriba en todas las páginas.</span></p></li>
+      </ul>
+      <p class="demo-note">Se ve mejor primero en la compu y después en el celular. Es una versión de prueba: Google no la muestra todavía, a propósito, hasta el lanzamiento.</p>
+    </div>
+    <div class="mosaic reveal">
+      <figure><img src="img/cejas-d.webp" alt="Peinado de cejas" loading="lazy"><figcaption>Cejas</figcaption></figure>
+      <figure><img src="img/pestanas-d.webp" alt="Styling de pestañas" loading="lazy"><figcaption>Pestañas</figcaption></figure>
+      <figure><img src="img/productos-d.webp" alt="Productos Guzel" loading="lazy"><figcaption>Productos</figcaption></figure>
+      <figure><img src="img/resultado-d.webp" alt="Resultado final" loading="lazy"><figcaption>Resultado</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="cambia" class="compare-bg">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="kicker">Qué cambia</p>
+      <div class="rule"></div>
+      <h2>Lo más importante no se ve: Google y las IA la entienden.</h2>
+      <p class="lead" style="margin-top:18px">Está hecha para que, cuando alguien busque cejas o pestañas cerca, Google y ChatGPT recomienden a Guzel.</p>
+    </div>
+    <div class="compare reveal">
+      <div class="row head"><div>Tema</div><div class="old">Web actual</div><div class="new">Web nueva</div></div>
+      <div class="row"><div class="topic"><i style="background:var(--sky)"></i>Google</div><div class="old"><span class="mobile-label">Hoy</span>Solo la portada tiene título; las demás páginas aparecen sin nombre. No tiene mapa del sitio.</div><div class="new"><span class="mobile-label">Web nueva</span>Cada página tiene su título y descripción, y Google recibe el mapa completo del sitio.</div></div>
+      <div class="row"><div class="topic"><i style="background:var(--pink)"></i>ChatGPT, Gemini y otras IA</div><div class="old"><span class="mobile-label">Hoy</span>No las tiene en cuenta.</div><div class="new"><span class="mobile-label">Web nueva</span>Les da permiso para leerla y un resumen pensado para ellas, para que puedan recomendar a Guzel.</div></div>
+      <div class="row"><div class="topic"><i style="background:var(--teal)"></i>Sucursales</div><div class="old"><span class="mobile-label">Hoy</span>Todas en una sola página.</div><div class="new"><span class="mobile-label">Web nueva</span>Una página por sucursal ("cejas en Palermo", "cejas en Martínez"…), con mapa, horario y si está abierta ahora.</div></div>
+      <div class="row"><div class="topic"><i style="background:var(--butter)"></i>Precios</div><div class="old"><span class="mobile-label">Hoy</span>Tardan de 3 a 10 segundos en aparecer y Google no los ve.</div><div class="new"><span class="mobile-label">Web nueva</span>Aparecen al instante y Google los lee.</div></div>
+      <div class="row"><div class="topic"><i style="background:var(--sky)"></i>Feriados</div><div class="old"><span class="mobile-label">Hoy</span>Una línea fija de "Feriados", sin decir cuáles.</div><div class="new"><span class="mobile-label">Web nueva</span>Cada feriado con su nombre y su horario, por sucursal.</div></div>
+      <div class="row"><div class="topic"><i style="background:var(--pink)"></i>Avisos</div><div class="old"><span class="mobile-label">Hoy</span>No hay forma de avisar "hoy sin luz".</div><div class="new"><span class="mobile-label">Web nueva</span>Aparece un cartel en la página de esa sucursal.</div></div>
+      <div class="row"><div class="topic"><i style="background:var(--teal)"></i>Celular</div><div class="old"><span class="mobile-label">Hoy</span>Se adapta.</div><div class="new"><span class="mobile-label">Web nueva</span>Pensada aparte para celular, con el mismo video.</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="panel">
+  <div class="wrap panel-grid">
+    <div class="reveal">
+      <p class="kicker">Un solo lugar para cargar todo</p>
+      <div class="rule"></div>
+      <h2>Lo que se carga en el panel de Sofi sale también en la web.</h2>
+      <p class="lead" style="margin-top:18px">Sucursales, horarios, feriados, avisos y precios se cargan una sola vez, en el panel que la encargada ya usa. Aparecen solos en la web en pocos minutos: no hay que cargar nada dos veces ni pedirle cambios a nadie.</p>
+      <div class="aviso-demo" aria-label="Ejemplo de aviso en la web">
+        <div class="bar"><i></i><i></i><i></i></div>
+        <div class="body">
+          <p class="kicker" style="font-size:.7rem">Ejemplo · Sucursal San Nicolás</p>
+          <p class="name">Guzel Tribunales</p>
+          <div class="banner"><span class="dot"></span><p>Hoy estamos sin luz en Tribunales. Podés acercarte a Microcentro.<small>Cerrado · hasta que se borre el aviso</small></p></div>
+          <span class="pill">● Cerrado ahora</span>
+        </div>
+      </div>
+    </div>
+    <div class="flow reveal">
+      <svg viewBox="0 0 520 420" role="img" aria-label="El panel de Sofi alimenta a Sofi y a la web">
+        <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#1f6f63"/></marker></defs>
+        <rect x="140" y="16" width="240" height="150" rx="18" fill="#fff" stroke="#8acdc1" stroke-width="2.5"/>
+        <text x="260" y="52" text-anchor="middle" font-family="Fraunces, serif" font-size="22" fill="#1f1f1f">Panel de Sofi</text>
+        <text x="260" y="84" text-anchor="middle" font-family="Quicksand, sans-serif" font-size="14" fill="#474747">Sucursales y horarios</text>
+        <text x="260" y="106" text-anchor="middle" font-family="Quicksand, sans-serif" font-size="14" fill="#474747">Feriados</text>
+        <text x="260" y="128" text-anchor="middle" font-family="Quicksand, sans-serif" font-size="14" fill="#474747">Avisos</text>
+        <text x="260" y="150" text-anchor="middle" font-family="Quicksand, sans-serif" font-size="14" fill="#474747">Precios</text>
+        <path d="M210 166 V214 H130 V250" fill="none" stroke="#1f6f63" stroke-width="2" marker-end="url(#ar)"/>
+        <path d="M310 166 V214 H390 V250" fill="none" stroke="#1f6f63" stroke-width="2" marker-end="url(#ar)"/>
+        <rect x="16" y="254" width="228" height="148" rx="18" fill="#ffcefb" fill-opacity=".45"/>
+        <text x="130" y="292" text-anchor="middle" font-family="Fraunces, serif" font-size="21" fill="#1f1f1f">Sofi</text>
+        <text x="130" y="318" text-anchor="middle" font-family="Quicksand, sans-serif" font-size="13" fill="#474747">WhatsApp, Instagram y chat</text>
+        <text x="130" y="348" text-anchor="middle" font-family="Quicksand, sans-serif" font-size="13.5" fill="#1f1f1f">Contesta horarios,</text>
+        <text x="130" y="368" text-anchor="middle" font-family="Quicksand, sans-serif" font-size="13.5" fill="#1f1f1f">feriados y avisos</text>
+        <rect x="276" y="254" width="228" height="148" rx="18" fill="#99c6d2" fill-opacity=".45"/>
+        <text x="390" y="292" text-anchor="middle" font-family="Fraunces, serif" font-size="21" fill="#1f1f1f">Web nueva</text>
+        <text x="390" y="318" text-anchor="middle" font-family="Quicksand, sans-serif" font-size="13" fill="#474747">guzel.com.ar</text>
+        <text x="390" y="348" text-anchor="middle" font-family="Quicksand, sans-serif" font-size="13.5" fill="#1f1f1f">Muestra horarios, abierta</text>
+        <text x="390" y="368" text-anchor="middle" font-family="Quicksand, sans-serif" font-size="13.5" fill="#1f1f1f">ahora, avisos y precios</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="screens-bg">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="kicker">Así se ve una sucursal</p>
+      <div class="rule"></div>
+      <h2>Una página por local, en la compu y en el celular.</h2>
+    </div>
+    <div class="screens reveal">
+      <div class="browser"><div class="bar"><i></i><i></i><i></i><span>guzel.com.ar/sucursales/palermo-soho</span></div><img src="img/sucursal.png" alt="Página de la sucursal Palermo Soho en la computadora" loading="lazy"></div>
+      <div class="phone"><img src="img/sucursal-cel.jpg" alt="Página de la sucursal Palermo Soho en el celular" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<section id="seguridad">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="kicker">Seguridad y propiedad</p>
+      <div class="rule"></div>
+      <h2>Todo sigue siendo de Guzel.</h2>
+    </div>
+    <div class="cards reveal">
+      <div class="card"><div class="ico" style="background:var(--butter)"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div><b>Candado de seguridad</b><span>Incluido y gratis. Se renueva solo, sin que nadie se tenga que acordar.</span></div>
+      <div class="card"><div class="ico" style="background:var(--teal)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div><b>El dominio es de Guzel</b><span>Sigue a su nombre en NIC Argentina, como hoy.</span></div>
+      <div class="card"><div class="ico" style="background:var(--pink)"><svg viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg></div><b>La app y los mails no se tocan</b><span>Solo cambia la página web. La app y los mails @guzel.com.ar siguen igual.</span></div>
+      <div class="card"><div class="ico" style="background:var(--sky)"><svg viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 6 0l3-3a4 4 0 0 0-6-6l-1 1"/><path d="M14 10a4 4 0 0 0-6 0l-3 3a4 4 0 0 0 6 6l1-1"/></svg></div><b>Las direcciones se mantienen</b><span>/servicios, /sucursales… Así no se pierde lo que Google ya conoce.</span></div>
+      <div class="card"><div class="ico" style="background:var(--butter)"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg></div><b>Vuelta atrás en un minuto</b><span>Si algo no gusta el día del lanzamiento, se vuelve a la web anterior.</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="seguimos" class="steps-bg">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="kicker">Cómo seguimos</p>
+      <div class="rule"></div>
+      <h2>Cinco pasos hasta el lanzamiento.</h2>
+    </div>
+    <ol class="steps reveal">
+      <li><b>Guzel la mira</b><span>Y marca lo que quiera cambiar: textos, fotos, colores.</span></li>
+      <li><b>Ajustamos</b><span>La web con esos cambios.</span></li>
+      <li><b>Elegimos la fecha</b><span>Del lanzamiento.</span></li>
+      <li><b>Mudamos la web</b><span>A guzel.com.ar. Hace falta entrar una vez a NIC Argentina con la clave fiscal.</span></li>
+      <li><b>Lanzamos</b><span>Y avisamos a Google para que la muestre en días y no en semanas.</span></li>
+    </ol>
+    <details class="reveal">
+      <summary>¿Cómo es la mudanza a guzel.com.ar?</summary>
+      <p>Primero se muda la "agenda" del dominio (el DNS) sin cambiar nada: la web vieja y los mails siguen igual. Así Guzel queda dueña de su dominio y no depende de ningún proveedor.</p>
+      <ol>
+        <li>Crear una cuenta gratis de Cloudflare con un mail de Guzel. La cuenta queda a nombre de Guzel.</li>
+        <li>Cloudflare copia la agenda actual: dónde está la web y dónde llegan los mails de Google.</li>
+        <li>Entrar a nic.ar con la clave fiscal → Mis dominios → guzel.com.ar → Delegar.</li>
+        <li>Cambiar los servidores DNS actuales por los 2 que da Cloudflare.</li>
+        <li>Esperar entre unas horas y 2 días. Cloudflare avisa por mail.</li>
+        <li>Comprobar que la web de siempre abre y que los mails andan. Hasta acá nadie nota nada.</li>
+      </ol>
+      <p>El día del lanzamiento se cambian solo dos datos (guzel.com.ar y www) para que apunten a la web nueva. Tarda minutos.</p>
+    </details>
+    <div class="final-cta reveal">
+      <a class="btn" href="https://guzel.31-220-56-152.sslip.io" target="_blank" rel="noopener">Ver la web de prueba →</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>Propuesta preparada para Guzel · Octubre 2026</p>
+  <div class="hl-pw-wrap">
+    <a href="https://mflowsuite.com/" target="_blank" rel="noopener" style="text-decoration:none;display:inline-block;">
+      <div id="hl-pw-scene">
+        <div id="hl-pw-row" style="opacity:0;">
+          <span class="hl-pw-by">Powered by&nbsp;</span>
+          <span id="hl-pw-slot"></span>
+          <span id="hl-pw-chars"></span>
+        </div>
+        <img id="hl-pw-logo" src="https://reviews.mflowsuite.com/assets/mflowsuite-logo.png" alt="MflowSuite">
+      </div>
+    </a>
+  </div>
+</footer>
+
+<script>
+  // Aparición suave de cada bloque al entrar en pantalla.
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+
+setTimeout(function() {
+  var BRAND='MflowSuite', LS=28, HD=290, FHD=680, SQD=480, LSQ=500, ID=650, THR=0.2;
+  var scene=document.getElementById('hl-pw-scene'),
+      row=document.getElementById('hl-pw-row'),
+      charsEl=document.getElementById('hl-pw-chars'),
+      slotEl=document.getElementById('hl-pw-slot'),
+      logo=document.getElementById('hl-pw-logo');
+  if(!scene||!row||!charsEl||!slotEl||!logo) return;
+  var spans=[];
+  for(var i=0;i<BRAND.length;i++){
+    var s=document.createElement('span');
+    s.className='pw-ch'; s.textContent=BRAND[i];
+    s.style.color='rgba(255,255,255,.55)'; s.style.fontWeight='600';
+    charsEl.appendChild(s); spans.push(s);
+  }
+  var lerp=function(a,b,t){return a+(b-a)*t;};
+  var clamp=function(v,a,b){return Math.max(a,Math.min(b,v));};
+  var arc=function(t,h){return 4*h*t*(1-t);};
+  function spring(t){
+    if(t<.15){var r=t/.15; return[lerp(1,1.35,r),lerp(1,.55,r)];}
+    if(t<.40){var r=(t-.15)/.25; return[lerp(1.35,.88,r),lerp(.55,1.22,r)];}
+    if(t<.70){var r=(t-.40)/.30; return[lerp(.88,1.04,r),lerp(1.22,.96,r)];}
+    var r=(t-.70)/.30; return[lerp(1.04,1,r),lerp(.96,1,r)];
+  }
+  function air(t){
+    if(t<.45) return[lerp(1,.84,t/.45),lerp(1,1.2,t/.45)];
+    if(t<.82) return[.84,1.2];
+    var r=(t-.82)/.18; return[lerp(.84,1.28,r),lerp(1.2,.68,r)];
+  }
+  function ctr(el){
+    var er=el.getBoundingClientRect(),sr=scene.getBoundingClientRect();
+    return{x:er.left-sr.left+er.width/2,y:er.top-sr.top+er.height/2};
+  }
+  function mv(cx,cy,sx,sy,rot,a){
+    logo.style.transform='translate('+(cx-LS/2)+'px,'+(cy-LS/2)+'px) rotate('+rot+'rad) scale('+sx+','+sy+')';
+    logo.style.opacity=a;
+  }
+  var phase='intro',t0=null,idx=0,hop=null,done=false;
+  var lpos=[],spos=null;
+  var lsq=spans.map(function(){return{at:-1};});
+  var lsqAt=-1,lsX=1,lsY=1;
+  function uLS(now){
+    for(var i=0;i<spans.length;i++){
+      if(lsq[i].at<0) continue;
+      var t=clamp((now-lsq[i].at)/SQD,0,1),res=spring(t);
+      spans[i].style.transform='scaleX('+res[0]+') scaleY('+res[1]+')';
+      spans[i].style.color=t<.28?'#6fa8ff':'rgba(255,255,255,.55)';
+      if(t>=1){lsq[i].at=-1;spans[i].style.transform='';spans[i].style.color='';}
+    }
+  }
+  function uLogo(now){
+    if(lsqAt<0) return;
+    var t=clamp((now-lsqAt)/LSQ,0,1),res=spring(t);
+    lsX=res[0];lsY=res[1];
+    if(t>=1){lsqAt=-1;lsX=lsY=1;}
+  }
+  function tLogo(now){lsqAt=now;lsX=1.3;lsY=0.62;}
+  function sh(from,to,h,dur,now){hop={from:{x:from.x,y:from.y},to:{x:to.x,y:to.y},h:h,dur:dur,t0:now};}
+  function frame(now){
+    if(!t0) t0=now;
+    uLS(now);uLogo(now);
+    if(phase==='intro'){
+      var t=clamp((now-t0)/ID,0,1);
+      row.style.opacity=t; mv(-200,0,1,1,0,0);
+      if(t>=1){
+        lpos=spans.map(ctr);spos=ctr(slotEl);
+        var li=spans.length-1;
+        phase='hop';idx=li;t0=now;
+        sh({x:lpos[li].x+55,y:spos.y},{x:lpos[li].x,y:spos.y},40,HD,now);
+      }
+    } else if(phase==='hop'){
+      if(hop){
+        var ht=clamp((now-hop.t0)/hop.dur,0,1);
+        var lx=lerp(hop.from.x,hop.to.x,ht);
+        var ly=lerp(hop.from.y,hop.to.y,ht)-arc(ht,hop.h);
+        var rot=(ht<0.5?1:-1)*Math.sin(Math.PI*ht)*0.22;
+        var sh2=lsqAt>=0?[lsX,lsY]:air(ht);
+        mv(lx,ly,sh2[0],sh2[1],rot,1);
+        if(ht>=1){
+          lsq[idx].at=now;tLogo(now);
+          var fx=hop.to.x,fy=hop.to.y;idx--;
+          if(idx>=0){sh({x:fx,y:fy},{x:lpos[idx].x,y:spos.y},40,HD,now);}
+          else{phase='final';t0=now;sh({x:fx,y:fy},{x:spos.x,y:spos.y},70,FHD,now);}
+        }
+      }
+    } else if(phase==='final'){
+      if(hop){
+        var ht=clamp((now-hop.t0)/hop.dur,0,1);
+        var lx=lerp(hop.from.x,hop.to.x,ht);
+        var ly=lerp(hop.from.y,hop.to.y,ht)-arc(ht,hop.h);
+        var rot=(ht<0.5?1:-1)*Math.sin(Math.PI*ht)*0.18;
+        var sh2=lsqAt>=0?[lsX,lsY]:air(ht);
+        mv(lx,ly,sh2[0],sh2[1],rot,1);
+        if(ht>=1){phase='done';tLogo(now);mv(spos.x,spos.y,lsX,lsY,0,1);logo.classList.add('pw-glow');}
+      }
+    } else if(phase==='done'){
+      mv(spos.x,spos.y,lsX,lsY,0,1);
+      if(!done){done=true;return;}
+      return;
+    }
+    requestAnimationFrame(frame);
+  }
+  var started=false;
+  function start(){if(started)return;started=true;row.style.opacity='0';mv(-200,0,1,1,0,0);requestAnimationFrame(frame);}
+  function init(){
+    var obs=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){if(e.isIntersecting){start();obs.disconnect();}});
+    },{threshold:THR});
+    obs.observe(scene);
+  }
+  if(logo.complete){init();}else{logo.onload=init;logo.onerror=init;setTimeout(init,400);}
+},100);
+</script>
+</body>
+</html>
