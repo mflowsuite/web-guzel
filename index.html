@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Guzel · Propuesta de la web nueva</title>
-<meta name="description" content="Una web nueva para Guzel: se ve como el local, aparece en Google y en las IA, y se actualiza sola desde el panel de Sofi.">
+<meta name="description" content="Una web nueva para que ChatGPT, Gemini y Google lean a Guzel y la recomienden.">
 <meta name="robots" content="noindex">
 <meta property="og:title" content="Guzel · Propuesta de la web nueva">
-<meta property="og:description" content="Se ve como el local, aparece en Google y en las IA, y se actualiza sola desde el panel de Sofi.">
+<meta property="og:description" content="Para que ChatGPT, Gemini y Google lean a Guzel y la recomienden.">
 <meta property="og:image" content="https://mflowsuite.github.io/propuesta-web-guzel/img/og.jpg">
 <meta property="og:url" content="https://mflowsuite.github.io/propuesta-web-guzel/">
 <meta property="og:type" content="website">
@@ -55,6 +55,23 @@
   .hero h1 em { font-style: italic; color: var(--butter); }
   .hero p { margin: 20px 0 30px; font-size: clamp(1.05rem, 1.8vw, 1.3rem); max-width: 48ch; opacity: .95; }
   .hero .ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+
+  /* IA */
+  .ia-bg { background: linear-gradient(180deg, #fbf3fb 0%, var(--paper) 100%); }
+  .ia-grid { margin-top: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 72px); align-items: start; }
+  .chat { background: #fff; border-radius: 24px; padding: 24px; border: 1px solid var(--line); box-shadow: 0 30px 60px -36px rgba(80,40,80,.35); display: grid; gap: 14px; }
+  .chat-tag { font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--ash); }
+  .msg { padding: 14px 18px; border-radius: 18px; max-width: 92%; }
+  .msg.user { justify-self: end; background: var(--teal-deep); color: #fff; border-bottom-right-radius: 6px; }
+  .msg.bot { background: var(--cream); border-bottom-left-radius: 6px; }
+  .msg .who { display: block; font-size: .75rem; font-weight: 700; color: var(--teal-deep); margin-bottom: 6px; }
+  .msg ul { margin: 8px 0 0; padding-left: 18px; color: var(--ash); }
+  .msg .src { display: inline-block; margin-top: 10px; font-size: .78rem; padding: 2px 10px; border-radius: 999px; background: #fff; border: 1px solid var(--line); color: var(--ash); }
+  .ia-list { margin: 18px 0 0; padding: 0; list-style: none; counter-reset: i; display: grid; gap: 14px; }
+  .ia-list li { counter-increment: i; display: grid; grid-template-columns: 36px 1fr; gap: 14px; color: var(--ash); }
+  .ia-list li::before { content: counter(i); width: 36px; height: 36px; border-radius: 50%; background: var(--pink); color: var(--ink); display: grid; place-items: center; font-weight: 700; }
+  .ia-list b { color: var(--ink); }
+  .ia-note { margin-top: 22px; padding: 14px 18px; border-left: 4px solid var(--teal); background: #fff; border-radius: 0 12px 12px 0; font-size: .95rem; color: var(--ash); }
 
   /* Mirala */
   .look { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 72px); align-items: start; }
@@ -159,7 +176,7 @@
   }
 
   @media (max-width: 900px) {
-    .look, .panel-grid { grid-template-columns: 1fr; }
+    .look, .panel-grid, .ia-grid { grid-template-columns: 1fr; }
     .steps { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 640px) {
@@ -194,16 +211,54 @@
     </div>
   </div>
   <div class="content wrap">
-    <h1>Una web que se ve como <em>el local</em> y trabaja sola.</h1>
-    <p>Aparece en Google y en las recomendaciones de las IA, y se actualiza sola desde el panel que Guzel ya usa con Sofi.</p>
+    <h1>Que ChatGPT y Google <em>recomienden a Guzel</em>.</h1>
+    <p>La web nueva está hecha para que las IA lean qué hace Guzel, dónde está y cuándo abre, y la recomienden. Además se ve como el local y se actualiza sola.</p>
     <div class="ctas">
       <a class="btn" href="https://guzel.31-220-56-152.sslip.io" target="_blank" rel="noopener">Ver la web de prueba →</a>
-      <a class="btn ghost" href="#cambia">Qué cambia</a>
+      <a class="btn ghost" href="#ia">Cómo funciona</a>
     </div>
   </div>
 </header>
 
 <main>
+
+<section id="ia" class="ia-bg">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="kicker">Lo más importante</p>
+      <div class="rule"></div>
+      <h2>Ahora las IA pueden leer a Guzel y recomendarla.</h2>
+      <p class="lead" style="margin-top:18px">Cada vez más gente le pregunta a ChatGPT o a Gemini dónde hacerse las cejas. La IA recomienda los lugares que puede leer y entender. La web actual casi no le da información. La nueva le da todo.</p>
+    </div>
+    <div class="ia-grid">
+      <div class="chat reveal" aria-label="Ejemplo de una consulta a una IA">
+        <p class="chat-tag">Ejemplo de cómo pregunta la gente</p>
+        <div class="msg user">¿Dónde me hago las cejas con hilo en Palermo? Sin turno, si puede ser.</div>
+        <div class="msg bot">
+          <span class="who">Asistente de IA</span>
+          Te recomiendo <b>Guzel Palermo Soho</b>, un brow bar especializado en depilación con hilo.
+          <ul>
+            <li>Malabia 1682, Palermo</li>
+            <li>Lunes a viernes de 10 a 20 h, sábados de 10 a 19 h, domingos de 11 a 19 h</li>
+            <li>Atienden sin turno previo</li>
+          </ul>
+          <span class="src">Fuente: guzel.com.ar</span>
+        </div>
+      </div>
+      <div class="reveal">
+        <h3>Qué le da la web nueva a la IA</h3>
+        <ol class="ia-list">
+          <li><p><b>Permiso para entrar.</b> La web invita a ChatGPT, Gemini, Claude y Perplexity a leerla.</p></li>
+          <li><p><b>Un resumen escrito para la IA.</b> Servicios, precios y las 14 sucursales con dirección y horario, en una sola hoja.</p></li>
+          <li><p><b>Una ficha por sucursal.</b> Dirección, mapa, teléfono, horarios y feriados, en el formato que entienden Google y las IA.</p></li>
+          <li><p><b>Precios a la vista.</b> Hoy los precios tardan en cargar y la IA no llega a verlos.</p></li>
+          <li><p><b>Siempre al día.</b> Si cambia un horario o hay un aviso, la IA lo lee igual que la web.</p></li>
+        </ol>
+        <p class="ia-note">Ninguna empresa puede garantizar que una IA elija a Guzel. Pero sin esta información, no tiene cómo elegirla. Después del lanzamiento, las IA tardan unas semanas en volver a leer la web.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section id="mirala">
   <div class="wrap look">
@@ -234,13 +289,12 @@
     <div class="reveal">
       <p class="kicker">Qué cambia</p>
       <div class="rule"></div>
-      <h2>Lo más importante no se ve: Google y las IA la entienden.</h2>
-      <p class="lead" style="margin-top:18px">Está hecha para que, cuando alguien busque cejas o pestañas cerca, Google y ChatGPT recomienden a Guzel.</p>
+      <h2>La web de hoy y la nueva, punto por punto.</h2>
     </div>
     <div class="compare reveal">
       <div class="row head"><div>Tema</div><div class="old">Web actual</div><div class="new">Web nueva</div></div>
-      <div class="row"><div class="topic"><i style="background:var(--sky)"></i>Google</div><div class="old"><span class="mobile-label">Hoy</span>Solo la portada tiene título; las demás páginas aparecen sin nombre. No tiene mapa del sitio.</div><div class="new"><span class="mobile-label">Web nueva</span>Cada página tiene su título y descripción, y Google recibe el mapa completo del sitio.</div></div>
       <div class="row"><div class="topic"><i style="background:var(--pink)"></i>ChatGPT, Gemini y otras IA</div><div class="old"><span class="mobile-label">Hoy</span>No las tiene en cuenta.</div><div class="new"><span class="mobile-label">Web nueva</span>Les da permiso para leerla y un resumen pensado para ellas, para que puedan recomendar a Guzel.</div></div>
+      <div class="row"><div class="topic"><i style="background:var(--sky)"></i>Google</div><div class="old"><span class="mobile-label">Hoy</span>Solo la portada tiene título; las demás páginas aparecen sin nombre. No tiene mapa del sitio.</div><div class="new"><span class="mobile-label">Web nueva</span>Cada página tiene su título y descripción, y Google recibe el mapa completo del sitio.</div></div>
       <div class="row"><div class="topic"><i style="background:var(--teal)"></i>Sucursales</div><div class="old"><span class="mobile-label">Hoy</span>Todas en una sola página.</div><div class="new"><span class="mobile-label">Web nueva</span>Una página por sucursal ("cejas en Palermo", "cejas en Martínez"…), con mapa, horario y si está abierta ahora.</div></div>
       <div class="row"><div class="topic"><i style="background:var(--butter)"></i>Precios</div><div class="old"><span class="mobile-label">Hoy</span>Tardan de 3 a 10 segundos en aparecer y Google no los ve.</div><div class="new"><span class="mobile-label">Web nueva</span>Aparecen al instante y Google los lee.</div></div>
       <div class="row"><div class="topic"><i style="background:var(--sky)"></i>Feriados</div><div class="old"><span class="mobile-label">Hoy</span>Una línea fija de "Feriados", sin decir cuáles.</div><div class="new"><span class="mobile-label">Web nueva</span>Cada feriado con su nombre y su horario, por sucursal.</div></div>
