@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Guzel · Propuesta de la web nueva</title>
-<meta name="description" content="Una web nueva para que ChatGPT, Gemini y Google lean a Guzel y la recomienden.">
+<title>Guzel · Propuesta: web nueva y Guzel Points sin app</title>
+<meta name="description" content="Una web nueva para que ChatGPT, Gemini y Google recomienden a Guzel, y las Guzel Points en el Wallet, sin app.">
 <meta name="robots" content="noindex">
-<meta property="og:title" content="Guzel · Propuesta de la web nueva">
-<meta property="og:description" content="Para que ChatGPT, Gemini y Google lean a Guzel y la recomienden.">
+<meta property="og:title" content="Guzel · Propuesta: web nueva y Guzel Points sin app">
+<meta property="og:description" content="Que ChatGPT y Google recomienden a Guzel, y que las clientas vuelvan con sus Guzel Points en el Wallet.">
 <meta property="og:image" content="https://mflowsuite.github.io/propuesta-web-guzel/img/og.jpg">
 <meta property="og:url" content="https://mflowsuite.github.io/propuesta-web-guzel/">
 <meta property="og:type" content="website">
@@ -72,6 +72,48 @@
   .ia-list li::before { content: counter(i); width: 36px; height: 36px; border-radius: 50%; background: var(--pink); color: var(--ink); display: grid; place-items: center; font-weight: 700; }
   .ia-list b { color: var(--ink); }
   .ia-note { margin-top: 22px; padding: 14px 18px; border-left: 4px solid var(--teal); background: #fff; border-radius: 0 12px 12px 0; font-size: .95rem; color: var(--ash); }
+
+  /* Incluye */
+  .incluye { padding: 40px 0; background: var(--paper); border-bottom: 1px solid var(--line); }
+  .inc-grid { margin-top: 16px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .inc { display: grid; gap: 4px; align-content: start; padding: 20px 22px; border-radius: 18px; background: var(--cream); color: var(--ink); text-decoration: none; transition: transform .2s; }
+  .inc:hover { transform: translateY(-3px); }
+  .inc-n { font-family: var(--display); font-size: 1.8rem; line-height: 1; color: var(--teal-deep); }
+  .inc b { font-size: 1.1rem; }
+  .inc span:last-child { color: var(--ash); font-size: .95rem; }
+
+  /* App */
+  .app-bg { background: linear-gradient(180deg, #eef7f5 0%, var(--paper) 100%); }
+  .app-grid { margin-top: 48px; display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(32px, 6vw, 72px); align-items: start; }
+  .phone-demo { justify-self: center; width: min(320px, 100%); }
+  .lock { border-radius: 40px; padding: 28px 16px 24px; background: linear-gradient(160deg, #99c6d2 0%, #8acdc1 45%, #ffcefb 100%); border: 10px solid #1f1f1f; box-shadow: 0 40px 70px -30px rgba(0,0,0,.45); display: grid; gap: 14px; }
+  .lock-time { text-align: center; font-size: 3rem; font-weight: 600; color: #fff; line-height: 1; margin: 6px 0 4px; }
+  .notif { display: flex; gap: 10px; padding: 12px; border-radius: 16px; background: rgba(255,255,255,.75); backdrop-filter: blur(8px); font-size: .85rem; line-height: 1.35; }
+  .notif b { display: block; }
+  .notif-ico { width: 30px; height: 30px; flex: none; border-radius: 8px; background: #fff url(img/logo.png) center / 80% no-repeat; }
+  .wcard { border-radius: 18px; padding: 16px; background: #1f6f63; color: #fff; }
+  .wcard-top { display: flex; justify-content: space-between; align-items: center; font-size: .8rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+  .wcard-top img { width: 70px; filter: brightness(0) invert(1); }
+  .wcard-pts { font-family: var(--display); font-size: 2.4rem; margin: 18px 0 8px; }
+  .wcard-pts small { font-family: var(--sans); font-size: .9rem; opacity: .8; }
+  .wcard-bar { height: 8px; border-radius: 8px; background: rgba(255,255,255,.25); overflow: hidden; }
+  .wcard-bar i { display: block; height: 100%; background: var(--butter); border-radius: 8px; }
+  .wcard-foot { margin-top: 10px; font-size: .8rem; opacity: .85; }
+  .demo-cap { margin-top: 14px; text-align: center; font-size: .85rem; color: var(--ash); }
+  .join { margin: 16px 0 0; padding: 0; list-style: none; counter-reset: j; display: grid; gap: 12px; }
+  .join li { counter-increment: j; display: grid; grid-template-columns: 36px 1fr; gap: 14px; align-items: center; color: var(--ash); }
+  .join li::before { content: counter(j); width: 36px; height: 36px; border-radius: 50%; background: var(--teal); color: var(--ink); display: grid; place-items: center; font-weight: 700; }
+  .join b { color: var(--ink); }
+  .extras { margin: 16px 0 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+  .extras li { padding-left: 22px; position: relative; color: var(--ash); }
+  .extras li::before { content: ''; position: absolute; left: 0; top: .62em; width: 10px; height: 10px; border-radius: 50%; background: var(--pink); }
+  .extras b { color: var(--ink); }
+  .migra { margin-top: 48px; padding: clamp(24px, 4vw, 40px); border-radius: 24px; background: var(--ink); color: #fff; display: grid; grid-template-columns: 1fr 1.4fr; gap: 28px; align-items: center; }
+  .migra .kicker { color: var(--teal); }
+  .migra-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .opt { display: grid; gap: 6px; align-content: start; padding: 20px; border-radius: 18px; background: #2a2a2a; }
+  .opt-tag { justify-self: start; font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding: 3px 10px; border-radius: 999px; background: var(--teal); color: var(--ink); }
+  .opt span:last-child { color: #cfcfcf; font-size: .95rem; }
 
   /* Mirala */
   .look { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 72px); align-items: start; }
@@ -139,7 +181,7 @@
   .steps-bg { background: var(--ink); color: #fff; }
   .steps-bg .kicker { color: var(--teal); }
   .steps-bg .lead { color: #cfcfcf; }
-  .steps { list-style: none; padding: 0; margin: 48px 0 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; counter-reset: s; }
+  .steps { list-style: none; padding: 0; margin: 48px 0 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; counter-reset: s; }
   .steps li { position: relative; padding: 26px 20px 22px; border-radius: 20px; background: #2a2a2a; counter-increment: s; }
   .steps li::before { content: counter(s); font-family: var(--display); font-size: 2.6rem; line-height: 1; color: var(--teal); display: block; margin-bottom: 14px; }
   .steps b { display: block; margin-bottom: 6px; }
@@ -176,7 +218,8 @@
   }
 
   @media (max-width: 900px) {
-    .look, .panel-grid, .ia-grid { grid-template-columns: 1fr; }
+    .look, .panel-grid, .ia-grid, .app-grid, .migra { grid-template-columns: 1fr; }
+    .inc-grid { grid-template-columns: 1fr; }
     .steps { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 640px) {
@@ -188,6 +231,7 @@
     .mobile-label { display: block; font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 2px; }
     .row .new .mobile-label { color: var(--teal-deep); }
     .steps { grid-template-columns: 1fr; }
+    .migra-opts { grid-template-columns: 1fr; }
     .screens { padding-right: 0; padding-bottom: 120px; }
     .phone { right: 8px; bottom: -20px; width: 140px; border-radius: 26px; padding: 7px; }
     .phone img { border-radius: 20px; }
@@ -207,7 +251,7 @@
   <div class="top">
     <div class="wrap">
       <img class="logo" src="img/logo.png" alt="Guzel">
-      <span class="tag">Propuesta · Web nueva</span>
+      <span class="tag">Propuesta para Guzel</span>
     </div>
   </div>
   <div class="content wrap">
@@ -221,6 +265,17 @@
 </header>
 
 <main>
+
+<section class="incluye">
+  <div class="wrap">
+    <p class="kicker">Qué incluye la propuesta</p>
+    <div class="inc-grid">
+      <a class="inc reveal" href="#ia"><span class="inc-n">1</span><b>Web nueva</b><span>Para que ChatGPT, Gemini y Google recomienden a Guzel. Se ve como el local.</span></a>
+      <a class="inc reveal" href="#app"><span class="inc-n">2</span><b>Guzel Points sin app</b><span>La tarjeta de puntos vive en el Wallet del celular. La app vieja se jubila.</span></a>
+      <a class="inc reveal" href="#panel"><span class="inc-n">3</span><b>Todo conectado con Sofi</b><span>Horarios, feriados y avisos se cargan una vez y salen en la web y en Sofi. Sofi también sabe los puntos de cada clienta.</span></a>
+    </div>
+  </div>
+</section>
 
 <section id="ia" class="ia-bg">
   <div class="wrap">
@@ -304,6 +359,73 @@
   </div>
 </section>
 
+<section id="app" class="app-bg">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="kicker">Chau app</p>
+      <div class="rule"></div>
+      <h2>Guzel Points, sin bajar ninguna app.</h2>
+      <p class="lead" style="margin-top:18px">La app de hoy hay que buscarla en la tienda, bajarla, crear usuario y contraseña, y acordarse de abrirla en el mostrador. Cada paso es una clienta que no se suma. Con <b>Recompensalo</b>, la tarjeta de Guzel Points vive en el Wallet del celular, al lado de las tarjetas del banco.</p>
+    </div>
+
+    <div class="app-grid">
+      <div class="phone-demo reveal" aria-label="Ejemplo de la tarjeta Guzel Points en el celular">
+        <div class="lock">
+          <p class="lock-time">10:42</p>
+          <div class="notif"><span class="notif-ico"></span><p><b>Guzel</b><span>Te faltan 150 puntos para tu perfilado de regalo. ¡Te esperamos!</span></p></div>
+          <div class="wcard">
+            <div class="wcard-top"><img src="img/logo.png" alt=""><span>Guzel Points</span></div>
+            <p class="wcard-pts">1.350 <small>puntos</small></p>
+            <div class="wcard-bar"><i style="width:90%"></i></div>
+            <p class="wcard-foot">Ana López · Te faltan 150 para tu premio</p>
+          </div>
+        </div>
+        <p class="demo-cap">Ejemplo: la tarjeta en el Wallet y un aviso en la pantalla del celular.</p>
+      </div>
+      <div class="reveal">
+        <h3>Se suma en menos de un minuto</h3>
+        <ol class="join">
+          <li><p><b>Escanea el QR</b> del mostrador.</p></li>
+          <li><p><b>Pone su nombre y su celular.</b></p></li>
+          <li><p><b>La guarda en su Wallet.</b> Anda en iPhone y en Android, y no ocupa lugar.</p></li>
+        </ol>
+        <h3 style="margin-top:32px">Y trabaja sola</h3>
+        <ul class="extras">
+          <li><b>Te falta poco:</b> le avisa cuando está cerca del premio.</li>
+          <li><b>Te extrañamos:</b> a la que hace 60 días no viene, con un regalo para volver.</li>
+          <li><b>Feliz cumple:</b> el día de su cumpleaños, con un regalo.</li>
+          <li><b>Más reseñas en Google:</b> después de cada visita, un "¿cómo te fue?" con el link a su sucursal.</li>
+          <li><b>Cada clienta trae otra:</b> invita a una amiga y ganan las dos.</li>
+          <li><b>Cerca del local:</b> en el iPhone, la tarjeta aparece cuando pasa por una sucursal.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-top:64px">
+      <h3>Todo lo que hace la app hoy, sin app</h3>
+      <div class="compare">
+        <div class="row head"><div>La app hoy</div><div class="old">Cómo se hace ahora</div><div class="new">Con qué</div></div>
+        <div class="row"><div class="topic"><i style="background:var(--pink)"></i>Guzel Points</div><div class="old"><span class="mobile-label">Ahora</span>La tarjeta de puntos en el Wallet. Suma en cada visita.</div><div class="new"><span class="mobile-label">Con</span>Recompensalo</div></div>
+        <div class="row"><div class="topic"><i style="background:var(--teal)"></i>Sucursales y la más cercana</div><div class="old"><span class="mobile-label">Ahora</span>Una página por sucursal con mapa, y la tarjeta que aparece cerca del local.</div><div class="new"><span class="mobile-label">Con</span>Web nueva y Recompensalo</div></div>
+        <div class="row"><div class="topic"><i style="background:var(--butter)"></i>Servicios</div><div class="old"><span class="mobile-label">Ahora</span>En la web, con precios siempre al día.</div><div class="new"><span class="mobile-label">Con</span>Web nueva</div></div>
+        <div class="row"><div class="topic"><i style="background:var(--sky)"></i>Promos y novedades</div><div class="old"><span class="mobile-label">Ahora</span>Avisos a la pantalla del celular, sin pagar por mensaje.</div><div class="new"><span class="mobile-label">Con</span>Recompensalo</div></div>
+        <div class="row"><div class="topic"><i style="background:var(--pink)"></i>"¿Cuántos puntos tengo?"</div><div class="old"><span class="mobile-label">Ahora</span>Se lo pregunta a Sofi por WhatsApp o Instagram, y le contesta.</div><div class="new"><span class="mobile-label">Con</span>Sofi y Recompensalo</div></div>
+      </div>
+    </div>
+
+    <div class="migra reveal">
+      <div>
+        <p class="kicker">Nadie pierde sus puntos</p>
+        <h3 style="margin-top:10px">Los Guzel Points de cada clienta pasan a la tarjeta nueva.</h3>
+      </div>
+      <div class="migra-opts">
+        <div class="opt"><span class="opt-tag">Opción 1</span><b>Guzel pasa la lista</b><span>La dueña nos pasa las clientas con los puntos de cada una, y los cargamos antes del lanzamiento.</span></div>
+        <div class="opt"><span class="opt-tag">Si no hay lista</span><b>Se cargan en el mostrador</b><span>La clienta muestra en la app vieja los puntos que tiene y se los cargan en su tarjeta nueva.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="panel">
   <div class="wrap panel-grid">
     <div class="reveal">
@@ -371,7 +493,7 @@
     <div class="cards reveal">
       <div class="card"><div class="ico" style="background:var(--butter)"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div><b>Candado de seguridad</b><span>Incluido y gratis. Se renueva solo, sin que nadie se tenga que acordar.</span></div>
       <div class="card"><div class="ico" style="background:var(--teal)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div><b>El dominio es de Guzel</b><span>Sigue a su nombre en NIC Argentina, como hoy.</span></div>
-      <div class="card"><div class="ico" style="background:var(--pink)"><svg viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg></div><b>La app y los mails no se tocan</b><span>Solo cambia la página web. La app y los mails @guzel.com.ar siguen igual.</span></div>
+      <div class="card"><div class="ico" style="background:var(--pink)"><svg viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg></div><b>Los mails no se tocan</b><span>Los mails @guzel.com.ar siguen igual. La app vieja se reemplaza por la tarjeta en el Wallet.</span></div>
       <div class="card"><div class="ico" style="background:var(--sky)"><svg viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 6 0l3-3a4 4 0 0 0-6-6l-1 1"/><path d="M14 10a4 4 0 0 0-6 0l-3 3a4 4 0 0 0 6 6l1-1"/></svg></div><b>Las direcciones se mantienen</b><span>/servicios, /sucursales… Así no se pierde lo que Google ya conoce.</span></div>
       <div class="card"><div class="ico" style="background:var(--butter)"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg></div><b>Vuelta atrás en un minuto</b><span>Si algo no gusta el día del lanzamiento, se vuelve a la web anterior.</span></div>
     </div>
@@ -383,7 +505,7 @@
     <div class="reveal">
       <p class="kicker">Cómo seguimos</p>
       <div class="rule"></div>
-      <h2>Cinco pasos hasta el lanzamiento.</h2>
+      <h2>Seis pasos hasta el lanzamiento.</h2>
     </div>
     <ol class="steps reveal">
       <li><b>Guzel la mira</b><span>Y marca lo que quiera cambiar: textos, fotos, colores.</span></li>
@@ -391,6 +513,7 @@
       <li><b>Elegimos la fecha</b><span>Del lanzamiento.</span></li>
       <li><b>Mudamos la web</b><span>A guzel.com.ar. Hace falta entrar una vez a NIC Argentina con la clave fiscal.</span></li>
       <li><b>Lanzamos</b><span>Y avisamos a Google para que la muestre en días y no en semanas.</span></li>
+      <li><b>Pasamos los Guzel Points</b><span>Cargamos los puntos de cada clienta y ponemos el QR en cada mostrador.</span></li>
     </ol>
     <details class="reveal">
       <summary>¿Cómo es la mudanza a guzel.com.ar?</summary>
