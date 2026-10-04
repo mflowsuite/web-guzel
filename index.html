@@ -103,7 +103,8 @@
   .wcard-lbl { margin: 18px 0 8px; font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #2f8a7c; }
   .wcard-sellos { display: flex; gap: 8px; }
   .wcard-sellos i { width: 30px; height: 30px; border-radius: 50%; border: 2px dashed rgba(47,138,124,.4); }
-  .wcard-sellos i.gift { border: 0; background: #ff7ad9 url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27white%27 stroke-width=%272%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3E%3Crect x=%273%27 y=%278%27 width=%2718%27 height=%274%27 rx=%271%27/%3E%3Cpath d=%27M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5%27/%3E%3C/svg%3E") center / 58% no-repeat; box-shadow: 0 0 0 4px rgba(255,122,217,.25); }
+  .wcard-sellos i.extra { position: relative; }
+  .wcard-sellos i.extra::after { content: "+1"; position: absolute; top: -8px; right: -10px; padding: 1px 5px; border-radius: 999px; background: #ff7ad9; color: #fff; font: 700 9px/1.4 var(--sans); font-style: normal; border: 2px solid #fff; }
   .wcard-sellos i.on { border: 0; background: #2f8a7c url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27%3E%3Cpath d=%27M5 12l4 4L19 7%27 fill=%27none%27 stroke=%27white%27 stroke-width=%273%27/%3E%3C/svg%3E") center / 60% no-repeat; }
   .wcard-foot { margin-top: 14px; font-size: .8rem; }
   .demo-cap { margin-top: 14px; text-align: center; font-size: .85rem; color: var(--ash); }
@@ -287,7 +288,7 @@
     <p class="kicker">Qué incluye la propuesta</p>
     <div class="inc-grid">
       <a class="inc reveal" href="#ia"><span class="inc-n">1</span><b>Web nueva</b><span>Para que ChatGPT, Gemini y Google recomienden a Guzel. Se ve como el local.</span></a>
-      <a class="inc reveal" href="#app"><span class="inc-n">2</span><b>Tarjeta de beneficios sin app</b><span>La tarjeta vive en el Wallet del celular y reemplaza a la app actual. Quien se suma tiene un sello de regalo.</span><span class="inc-wallets"><img src="img/apple-wallet.svg" alt="Add to Apple Wallet" height="36"><img src="img/google-wallet.svg" alt="Add to Google Wallet" height="36"></span></a>
+      <a class="inc reveal" href="#app"><span class="inc-n">2</span><b>Tarjeta de beneficios sin app</b><span>La tarjeta vive en el Wallet del celular y reemplaza a la app actual. Quien se suma, en su primera visita suma un sello extra.</span><span class="inc-wallets"><img src="img/apple-wallet.svg" alt="Add to Apple Wallet" height="36"><img src="img/google-wallet.svg" alt="Add to Google Wallet" height="36"></span></a>
       <a class="inc reveal" href="#panel"><span class="inc-n">3</span><b>Todo conectado con Sofi</b><span>Horarios, feriados y avisos se cargan una vez y salen en la web y en Sofi. Sofi también le cuenta a cada clienta cómo va su tarjeta.</span></a>
     </div>
   </div>
@@ -387,23 +388,23 @@
 
     <div class="regalo reveal">
       <div>
-        <p class="kicker">Regalo de bienvenida</p>
+        <p class="kicker">Bienvenida</p>
         <h3 style="margin-top:8px">La primera visita suma doble.</h3>
-        <p>Para que se sumen, el gancho es un regalo: si la clienta viene dentro de los 7 días de sacar su tarjeta, en su primera visita suma <b>2 sellos</b>, el de su visita y uno extra de regalo. Ya está programado así.</p>
+        <p>Para que se sumen, el gancho es un sello más: si la clienta viene dentro de los 7 días de sacar su tarjeta, en su primera visita suma <b>2 sellos</b>, el de su visita y uno extra. Ya está programado así.</p>
       </div>
-      <p class="ecuacion"><span class="chip">✓ Su visita</span><b>+</b><span class="chip">🎁 Regalo</span><b>=</b><span class="chip total">2 sellos en la primera visita</span></p>
-      <p class="regalo-web">En la web nueva hay una página para sumarse con un solo botón: <b>«Quiero mi sello de regalo»</b>.</p>
+      <p class="ecuacion"><span class="chip">✓ Sello de su visita</span><b>+</b><span class="chip">✓ Sello extra</span><b>=</b><span class="chip total">2 sellos</span></p>
+      <p class="regalo-web">En la web nueva hay una página para sumarse con un solo botón: <b>«Quiero mi sello extra»</b>.</p>
     </div>
 
     <div class="app-grid">
       <div class="phone-demo reveal" aria-label="Ejemplo de la tarjeta de beneficios en el celular">
         <div class="lock">
           <p class="lock-time">10:42</p>
-          <div class="notif"><span class="notif-ico"></span><p><b>Guzel</b><span>¡Sumaste 2 sellos: el de tu visita y uno de regalo! Gracias por venir.</span></p></div>
+          <div class="notif"><span class="notif-ico"></span><p><b>Guzel</b><span>¡Sumaste 2 sellos: el de tu visita y uno extra! Gracias por venir.</span></p></div>
           <div class="wcard">
             <div class="wcard-top"><img src="img/logo.png" alt=""><span>Beneficios</span></div>
             <p class="wcard-lbl">Tus visitas</p>
-            <div class="wcard-sellos"><i class="on"></i><i class="gift"></i><i></i><i></i><i></i></div>
+            <div class="wcard-sellos"><i class="on"></i><i class="on extra"></i><i></i><i></i><i></i></div>
             <p class="wcard-foot">Ana López · Primera visita: ¡2 sellos!</p>
           </div>
         </div>
@@ -418,7 +419,7 @@
         </ol>
         <h3 style="margin-top:32px">Y trabaja sola</h3>
         <ul class="extras">
-          <li><b>Bienvenida:</b> en su primera visita, dentro de los 7 días, suma un sello extra de regalo.</li>
+          <li><b>Bienvenida:</b> en su primera visita, dentro de los 7 días, suma un sello extra.</li>
           <li><b>Te falta poco:</b> le avisa cuando está cerca del premio.</li>
           <li><b>Te extrañamos:</b> a la que hace 60 días no viene, con un regalo para volver.</li>
           <li><b>Feliz cumple:</b> el día de su cumpleaños, con un regalo.</li>
